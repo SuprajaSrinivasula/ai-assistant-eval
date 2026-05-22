@@ -1,20 +1,26 @@
 import gradio as gr
-from transformers import pipeline
+from .model import generate
 
-pipe = pipeline(
-    "text-generation",
-    model="Qwen/Qwen2.5-0.5B-Instruct"
+def respond(message, history):
+    messages = []
+    for user_msg, assistant_msg in history:
+        messages.append({"role": "user", "content": user_msg})
+        messages.append({"role": "assistant", "content": assistant_msg})
+    
+    messages.append({"role": "user", "content": message})
+    response = generate(messages)
+    return response
+
+demo = gr.ChatInterface(
+    fn=respond,
+    title="OSS Assistant (Qwen2.5)",
+    description="Powered by Qwen2.5-0.5B-Instruct",
+    examples=[
+        "What is the capital of France?",
+        "Explain quantum entanglement simply.",
+        "Write a Python function to reverse a string.",
+    ],
 )
 
-def chat(message):
-    result = pipe(message, max_new_tokens=100)
-    return result[0]["generated_text"]
-
-demo = gr.Interface(
-    fn=chat,
-    inputs="text",
-    outputs="text",
-    title="AI OSS Assistant"
-)
-
-demo.launch()
+if __name__ == "__main__":
+    demo.launch(server_port=7861)
