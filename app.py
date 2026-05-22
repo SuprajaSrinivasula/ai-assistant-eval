@@ -1,5 +1,5 @@
 import gradio as gr
-from .model import generate
+from model import generate
 
 def respond(message, history):
     messages = []
