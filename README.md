@@ -102,10 +102,10 @@ python -m evaluation.report   # Generate charts
 
 ## Tradeoffs Made
 
-- **Qwen2.5-0.5B** was chosen over larger OSS models for speed on CPU — larger models (7B+) would give better quality but require GPU
+- **Qwen2.5-0.5B** was chosen over larger OSS models for speed on CPU larger models (7B+) would give better quality but require GPU
 - **Groq** was used instead of Anthropic/OpenAI to keep costs at zero while still accessing a powerful frontier model
 - **LLM-as-judge** scoring is fast and scalable but may have its own biases compared to human evaluation
-- **Gradio** was chosen over FastAPI for speed of development — a production app would use a proper backend
+- **Gradio** was chosen over FastAPI for speed of development a production app would use a proper backend
 
 ---
 
@@ -131,26 +131,23 @@ python -m evaluation.report   # Generate charts
 ##  What I Would Improve With More Time
 
 1. **Deploy OSS model** on Hugging Face Spaces or Modal for public access and lower latency
-2. **Add memory/tool use** — persistent conversation memory across sessions, web search tool
-3. **Larger OSS model** — use Qwen2.5-7B or Llama 3.2-3B for better quality
-4. **Observability** — add logging, token counts, cost tracking per query
-5. **More evaluation prompts** — expand from ~15 to 100+ prompts across more categories
-6. **Human evaluation** — complement LLM-as-judge with human ratings for ground truth
-7. **Guardrails improvement** — more robust jailbreak detection using a dedicated safety model
+2. **Add memory/tool use** - persistent conversation memory across sessions, web search tool
+3. **Larger OSS model** - use Qwen2.5-7B or Llama 3.2-3B for better quality
+4. **Observability** - add logging, token counts, cost tracking per query
+5. **More evaluation prompts** - expand from ~15 to 100+ prompts across more categories
+6. **Human evaluation**  - complement LLM-as-judge with human ratings for ground truth
+7. **Guardrails improvement** -  more robust jailbreak detection using a dedicated safety model
 
 ---
 
 ##  Tech Stack
 
 - **Python 3.11**
-- **HuggingFace Transformers** — OSS model loading
-- **Groq SDK** — Frontier model API
-- **Gradio** — Chat UI
-- **Pandas + Matplotlib** — Evaluation reporting
-- **python-dotenv** — Environment management
+- **HuggingFace Transformers** - OSS model loading
+- **Groq SDK** - Frontier model API
+- **Gradio** - Chat UI
+- **Pandas + Matplotlib** - Evaluation reporting
+- **python-dotenv** - Environment management
 
 
 
-## 📬 Submission
-
-Built for the **Founding AI/ML Engineer** evaluation at [Ollive.ai](mailto:work@ollive.ai)
