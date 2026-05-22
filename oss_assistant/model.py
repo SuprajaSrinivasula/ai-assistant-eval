@@ -1,5 +1,5 @@
 from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline
-from shared.config import OSS_MODEL_NAME, MAX_NEW_TOKENS
+from shared config import OSS_MODEL_NAME, MAX_NEW_TOKENS
 import torch
 
 _pipe = None
