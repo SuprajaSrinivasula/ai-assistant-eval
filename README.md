@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # AI Assistant Evaluation - OSS vs Frontier
 
 A side-by-side comparison of two AI personal assistants:
@@ -151,3 +152,18 @@ python -m evaluation.report   # Generate charts
 
 
 
+=======
+---
+title: Ai Oss Assistant
+emoji: 😻
+colorFrom: red
+colorTo: purple
+sdk: gradio
+sdk_version: 6.14.0
+python_version: '3.13'
+app_file: app.py
+pinned: false
+---
+
+Check out the configuration reference at https://huggingface.co/docs/hub/spaces-config-reference
+>>>>>>> fffa4ccfe496c39fa3ca911b4d8183114efdfb2b
