@@ -88,13 +88,13 @@ http://127.0.0.1:7861
 
 Models Used
 
-Open Source Model
-Qwen2.5-0.5B-Instruct
-Lightweight and optimized for deployment
-Frontier Model
-Llama 3.3 70B
-Accessed through Groq API
-Ultra-low latency inference
+Open Source Model,
+Qwen2.5-0.5B-Instruct,,
+Lightweight and optimized for deployment,
+Frontier Model,
+Llama 3.3 70B,
+Accessed through Groq API,
+Ultra-low latency inference,
 Evaluation Metrics
 
 The assistants are evaluated using:
