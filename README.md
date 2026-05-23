@@ -12,29 +12,31 @@ Model: Llama 3.3 70B via Groq API
 Hosted inference using GroqCloud
 
 The project compares both assistants on:
-Hallucination rate
-Bias & harmful outputs
-Content safety
-Response latency
-Assistant behavior
-Features
-Multi-turn conversation support
-Short-term conversational memory
-Gradio chat interface
-Open-source model inference
-Frontier hosted model inference
-Safety guardrails
-Evaluation scripts
+Hallucination rate, 
+Bias & harmful outputs, 
+Content safety, 
+Response latency, 
+Assistant behavior,
+Features, 
+Multi-turn conversation support,
+Short-term conversational memory,
+Gradio chat interface,
+Open-source model inference,
+Frontier hosted model inference,
+Safety guardrails,
+Evaluation scripts,
 Deployment-ready structure
+
 Tech Stack
-Component	Technology
-Language	Python
-UI	Gradio
-OSS Model	Qwen2.5-0.5B-Instruct
-Frontier Model	Groq Llama 3.3 70B
-Framework	Hugging Face Transformers
-API Provider	Groq
-Deployment	Hugging Face Spaces
+Component	Technology,
+Language	Python,
+UI	Gradio,
+OSS Model	Qwen2.5-0.5B-Instruct,
+Frontier Model	Groq Llama 3.3 70B,
+Framework	Hugging Face Transformers,
+API Provider	Groq,
+Deployment	Hugging Face Spaces.
+
 Project Structure
 ai-assistant-eval/
 │
@@ -58,9 +60,13 @@ ai-assistant-eval/
 ├── .env
 
 Installation
+
 1. Clone Repository
+
 git clone https://github.com/SuprajaSrinivasula/ai-assistant-eval.git
+
 cd ai-assistant-eval
+
 2. Create Virtual Environment
 Windows
 python -m venv venv
@@ -68,7 +74,9 @@ venv\Scripts\activate
 Linux/Mac
 python -m venv venv
 source venv/bin/activate
+
 3. Install Dependencies
+
 pip install -r requirements.txt
 Environment Variables
 
@@ -99,44 +107,48 @@ Evaluation Metrics
 
 The assistants are evaluated using:
 
-Factual prompts
-Adversarial prompts
-Sensitive prompts
-Jailbreak attempts
-Metrics
-Metric	Description
-Hallucination Rate	Incorrect or fabricated responses
-Bias Score	Harmful or discriminatory outputs
-Safety	Resistance to unsafe prompts
-Latency	Response generation time
-Safety Guardrails
+Factual prompts,
+Adversarial prompts,
+Sensitive prompts,
+Jailbreak attempts,
+Metrics,
+Metric	Description,
+Hallucination Rate	Incorrect or fabricated responses,
+Bias Score	Harmful or discriminatory outputs,
+Safety	Resistance to unsafe prompts,
+Latency	Response generation time,
+Safety Guardrails.
 
 Implemented:
-Harmful prompt filtering
-Unsafe keyword detection
-Refusal handling
-Basic moderation logic
-Deployment
+Harmful prompt filtering,
+Unsafe keyword detection,
+Refusal handling,
+Basic moderation logic,
+Deployment.
 
 The Open Source Assistant can be deployed using:
 
-Hugging Face Spaces
-Modal
-Ollama
-RunPod
+Hugging Face Spaces,
+Modal,
+Ollama,
+RunPod,
 
 Recommended:
 
-Hugging Face Spaces
-Future Improvements
-Long-term memory support
-RAG integration
-Advanced observability
-Tool calling
-Agent workflows
-Better evaluation automation
+Hugging Face Spaces,
+Future Improvements,
+Long-term memory support,
+RAG integration,
+Advanced observability,
+Tool calling,
+Agent workflows,
+Better evaluation automation,
+
 Streaming responses
+
+
 Demo
+
 https://huggingface.co/spaces/srinivasula/ai-oss-assistant
 
 Author
