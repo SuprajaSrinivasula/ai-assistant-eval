@@ -87,6 +87,7 @@ Runs on:
 http://127.0.0.1:7861
 
 Models Used
+
 Open Source Model
 Qwen2.5-0.5B-Instruct
 Lightweight and optimized for deployment
@@ -97,6 +98,7 @@ Ultra-low latency inference
 Evaluation Metrics
 
 The assistants are evaluated using:
+
 Factual prompts
 Adversarial prompts
 Sensitive prompts
@@ -117,12 +119,14 @@ Basic moderation logic
 Deployment
 
 The Open Source Assistant can be deployed using:
+
 Hugging Face Spaces
 Modal
 Ollama
 RunPod
 
 Recommended:
+
 Hugging Face Spaces
 Future Improvements
 Long-term memory support
