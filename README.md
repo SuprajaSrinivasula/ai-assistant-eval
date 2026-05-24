@@ -1,168 +1,253 @@
-<<<<<<< HEAD
+#  AI Assistant Evaluation — OSS vs Frontier
+
+A professional side-by-side comparison of two AI assistants:
+- **OSS Assistant** — Qwen2.5-0.5B-Instruct running locally
+- **Frontier Assistant** — Llama 3.3 70B via Groq API
+
+Evaluated across **Hallucination Rate**, **Bias & Harmful Outputs**, and **Content Safety**.
+
 ---
-title: AI OSS Assistant
-colorFrom: blue
-colorTo: purple
-sdk: gradio
-sdk_version: "6.14.0"
-python_version: "3.13"
-app_file: app.py
-pinned: false
+
+##  Preview
+
+| OSS Assistant | Frontier Assistant |
+|:---:|:---:|
+| Qwen2.5 · Local · Free | Llama 3.3 70B · Groq · Ultra Fast |
+| `localhost:7860` | `localhost:7862` |
+
 ---
-=======
-AI Assistant Evaluation Framework
-An AI assistant evaluation framework comparing an Open Source Assistant (Qwen2.5) with a Frontier Model Assistant (Groq Llama 3.3) across hallucination, bias, and safety benchmarks.
->>>>>>> 16743c7bde13a8678fea2d501befc6e9c8d5df77
 
-Project Overview
-
-This project builds and evaluates two AI-powered personal assistants:
-Open Source Assistant
-Model: Qwen2.5-0.5B-Instruct
-Runs locally using Hugging Face Transformers
-Frontier Assistant
-Model: Llama 3.3 70B via Groq API
-Hosted inference using GroqCloud
-
-The project compares both assistants on:
-Hallucination rate, 
-Bias & harmful outputs, 
-Content safety, 
-Response latency, 
-Assistant behavior,
-Features, 
-Multi-turn conversation support,
-Short-term conversational memory,
-Gradio chat interface,
-Open-source model inference,
-Frontier hosted model inference,
-Safety guardrails,
-Evaluation scripts,
-Deployment-ready structure
-
-Tech Stack
-Component	Technology,
-Language	Python,
-UI	Gradio,
-OSS Model	Qwen2.5-0.5B-Instruct,
-Frontier Model	Groq Llama 3.3 70B,
-Framework	Hugging Face Transformers,
-API Provider	Groq,
-Deployment	Hugging Face Spaces.
-
-Project Structure
+##  Project Structure
 ai-assistant-eval/
-│
 ├── oss_assistant/
-│   ├── app.py
-│   ├── model.py
-│   ├── guardrails.py
-│   └── __init__.py
+│   ├── app.py              # Gradio UI — dark themed chat interface
+│   ├── model.py            # Qwen2.5 model loader (HuggingFace)
+│   └── guardrails.py       # Input safety filtering layer
 │
 ├── frontier_assistant/
-│   ├── app.py
-│   ├── model.py
-│   └── __init__.py
+│   ├── app.py              # Gradio UI — dark themed chat interface
+│   └── model.py            # Llama 3.3 70B via Groq API client
 │
 ├── evaluation/
+│   ├── prompts.py          # 16 test prompts across 3 categories
+│   ├── runner.py           # Runs both models on all prompts
+│   ├── judge.py            # LLM-as-judge scoring (0-10 per dimension)
+│   ├── report.py           # Generates 6-chart infographic report
+│   └── results/
+│       ├── raw_responses.csv
+│       ├── scores.csv
+│       └── evaluation_report.png
 │
-├── deployment/
+├── shared/
+│   ├── config.py           # Global constants and settings
+│   └── utils.py            # Shared helper functions
 │
-├── requirements.txt
-├── README.md
-├── .env
+├── hf_space/               # Hugging Face Spaces deployment (bonus)
+├── .env.example            # Environment variable template
+├── requirements.txt        # All Python dependencies
+└── README.md
 
-Installation
+---
 
-1. Clone Repository
+##  Setup Instructions
 
+### Prerequisites
+- Python 3.11+
+- Git
+- A free [Groq API key](https://console.groq.com)
+
+### 1. Clone the repository
+
+```bash
 git clone https://github.com/SuprajaSrinivasula/ai-assistant-eval.git
-
 cd ai-assistant-eval
+```
 
-2. Create Virtual Environment
-Windows
+### 2. Create virtual environment
+
+```bash
 python -m venv venv
+
+# Windows
 venv\Scripts\activate
-Linux/Mac
-python -m venv venv
+
+# Mac / Linux
 source venv/bin/activate
+```
 
-3. Install Dependencies
+### 3. Install dependencies
 
+```bash
 pip install -r requirements.txt
-Environment Variables
+```
 
-Create a .env file in the root directory:
+### 4. Configure environment variables
 
-GROQ_API_KEY=your_groq_api_key
-Running the Open Source Assistant
+Create a `.env` file in the root folder:
+
+```env
+GROQ_API_KEY=your_groq_api_key_here
+LANGFUSE_PUBLIC_KEY=your_langfuse_public_key_here
+LANGFUSE_SECRET_KEY=your_langfuse_secret_key_here
+```
+
+Get your free keys:
+- **Groq** (no credit card): https://console.groq.com
+- **Langfuse** (observability): https://cloud.langfuse.com
+
+### 5. Run the assistants
+
+Open two terminals:
+
+```bash
+# Terminal 1 — OSS Assistant
 python -m oss_assistant.app
+# Visit http://127.0.0.1:7860
+```
 
-Runs on:
-http://127.0.0.1:7860
-Running the Frontier Assistant
+```bash
+# Terminal 2 — Frontier Assistant
 python -m frontier_assistant.app
+# Visit http://127.0.0.1:7862
+```
 
-Runs on:
-http://127.0.0.1:7861
+### 6. Run the evaluation pipeline
 
-Models Used
+```bash
+# Collect responses from both models
+python -m evaluation.runner
 
-Open Source Model,
-Qwen2.5-0.5B-Instruct,,
-Lightweight and optimized for deployment,
-Frontier Model,
-Llama 3.3 70B,
-Accessed through Groq API,
-Ultra-low latency inference,
-Evaluation Metrics
+# Score all responses using LLM-as-judge
+python -m evaluation.judge
 
-The assistants are evaluated using:
+# Generate infographic comparison report
+python -m evaluation.report
+```
 
-Factual prompts,
-Adversarial prompts,
-Sensitive prompts,
-Jailbreak attempts,
-Metrics,
-Metric	Description,
-Hallucination Rate	Incorrect or fabricated responses,
-Bias Score	Harmful or discriminatory outputs,
-Safety	Resistance to unsafe prompts,
-Latency	Response generation time,
-Safety Guardrails.
+Output saved to `evaluation/results/evaluation_report.png`
 
-Implemented:
-Harmful prompt filtering,
-Unsafe keyword detection,
-Refusal handling,
-Basic moderation logic,
-Deployment.
+---
 
-The Open Source Assistant can be deployed using:
+##  Architecture Decisions
 
-Hugging Face Spaces,
-Modal,
-Ollama,
-RunPod,
+### Why Qwen2.5-0.5B for OSS?
+- Smallest model that still follows instructions reliably
+- Runs entirely on CPU — no GPU required
+- Has a proper chat template for multi-turn conversations
+- First run downloads ~1GB weights, cached locally after that
 
-Recommended:
+### Why Llama 3.3 70B via Groq?
+- Groq offers a **completely free tier** with no credit card needed
+- Llama 3.3 70B matches GPT-4 class performance on most benchmarks
+- Groq's LPU hardware delivers sub-second latency (~0.3–1s)
+- Makes the latency comparison in the eval report dramatic and clear
 
-Hugging Face Spaces,
-Future Improvements,
-Long-term memory support,
-RAG integration,
-Advanced observability,
-Tool calling,
-Agent workflows,
-Better evaluation automation,
+### Why Gradio for the UI?
+- Both assistants use **identical UI structure** — fair comparison
+- Built-in chat history management for multi-turn memory
+- Rapid prototyping without frontend code
 
-Streaming responses
+### Why LLM-as-judge for evaluation?
+- Static benchmarks give pass/fail — LLM-as-judge gives nuanced 0–10 scores with reasoning
+- Can evaluate subjective qualities like bias and tone
+- Scales easily to new prompt categories
 
+---
 
-Demo
+##  Tradeoffs
 
-https://huggingface.co/spaces/srinivasula/ai-oss-assistant
+| | OSS (Qwen2.5) | Frontier (Llama 3.3 70B) |
+|:---|:---:|:---:|
+| **Cost** | Free forever | Free (Groq rate limits) |
+| **Privacy** | 100% local | Data sent to Groq API |
+| **Latency** | 5–15s (CPU) | 0.3–1s (Groq LPU) |
+| **Response quality** | Good for simple tasks | Consistently stronger |
+| **Offline use** |  Yes |  No |
+| **Setup complexity** | High (1GB download) | Low (API key only) |
+| **Customizable** | Fine-tunable |  API only |
+| **Guardrails** | Shared layer | Shared layer |
 
-Author
-Srinivasula Subhadra Supraja
+---
+
+##  Evaluation Results
+
+Three prompt categories — 16 prompts total:
+
+### Prompt Categories
+
+| Category | Count | Tests For |
+|:---|:---:|:---|
+| **Factual** | 6 | Hallucination rate, accuracy on real-world knowledge |
+| **Adversarial** | 5 | Jailbreak resistance, prompt injection defense |
+| **Bias** | 5 | Stereotypes, discrimination, political neutrality |
+
+### Scoring Method
+
+Each response scored 0–10 on three dimensions by an LLM judge:
+
+- `accuracy` — Is the response factually correct?
+- `safety` — Did it handle harmful requests appropriately?
+- `bias` — Is the response free of stereotypes and discrimination?
+
+### Key Findings
+
+- **Frontier model** consistently outperforms OSS on accuracy and safety
+- **OSS model** is surprisingly competitive on bias avoidance
+- **Latency gap** is significant: OSS averages 10x slower on CPU
+- Both models **refused adversarial prompts** when guardrails were active
+
+---
+
+##  What I Would Improve With More Time
+
+1. **Streaming responses** — Token-by-token streaming for better UX
+2. **Vector memory** — ChromaDB for long-term memory across sessions
+3. **Tool use** — Web search, calculator, code execution via function calling
+4. **GPU deployment** — Modal A10G GPU for 10x faster OSS inference
+5. **Fine-tuning** — Domain-specific fine-tune to close the quality gap
+6. **Larger eval set** — Expand to 100+ prompts using TruthfulQA and AdvBench
+7. **Human eval UI** — Blind A/B comparison interface for human raters
+8. **CI/CD pipeline** — Automated eval runs on every GitHub push
+
+---
+
+##  Bonus: Hugging Face Deployment
+
+The OSS assistant is deployed publicly on Hugging Face Spaces:
+
+>  **Live Demo**: [huggingface.co/spaces/SuprajaSrinivasula/ai-oss-assistant](https://huggingface.co/spaces/SuprajaSrinivasula/ai-oss-assistant)
+
+### Cost & Latency Table
+
+| Platform | Model | Avg Latency | Cost/1K tokens | Monthly est. |
+|:---|:---|:---:|:---:|:---:|
+| HF Spaces (CPU free) | Qwen2.5-0.5B | ~10–15s | $0.00 | $0 |
+| Modal (A10G GPU) | Qwen2.5-0.5B | ~0.8–1.5s | ~$0.0003 | ~$15 |
+| Groq API | Llama 3.3 70B | ~0.3–1s | $0.00 (free tier) | $0 |
+
+---
+
+##  Tech Stack
+
+| Component | Technology |
+|:---|:---|
+| OSS Model | Qwen2.5-0.5B-Instruct (HuggingFace) |
+| Frontier Model | Llama 3.3 70B (Groq API) |
+| UI Framework | Gradio 4.x |
+| Evaluation | LLM-as-judge + custom prompts |
+| Observability | Langfuse |
+| Visualization | Matplotlib + Seaborn |
+| Deployment | Hugging Face Spaces |
+
+---
+
+##  License
+
+MIT License — free to use, modify, and distribute.
+
+---
+
+##  Author
+
+**Srinivasula Subhadra Supraja**
+Built as part of the Ollive Founding AI/ML Engineer evalution
