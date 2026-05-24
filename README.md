@@ -1,6 +1,5 @@
 ---
 title: AI OSS Assistant
-emoji: ??
 colorFrom: blue
 colorTo: purple
 sdk: gradio

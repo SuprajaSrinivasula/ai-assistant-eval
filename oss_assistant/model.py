@@ -1,5 +1,9 @@
+import sys
+import os
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline
-from shared config import OSS_MODEL_NAME, MAX_NEW_TOKENS
+from shared.config import OSS_MODEL_NAME, MAX_NEW_TOKENS
 import torch
 
 _pipe = None
@@ -24,7 +28,7 @@ def load_model():
         )
     return _pipe
 
-def generate(messages: list[dict]) -> str:
+def generate(messages: list) -> str:
     pipe = load_model()
     text = pipe.tokenizer.apply_chat_template(
         messages, tokenize=False, add_generation_prompt=True
