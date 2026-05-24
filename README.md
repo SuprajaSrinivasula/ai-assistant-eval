@@ -1,8 +1,8 @@
-#  AI Assistant Evaluation — OSS vs Frontier
+#  AI Assistant Evaluation - OSS vs Frontier
 
 A professional side-by-side comparison of two AI assistants:
-- **OSS Assistant** — Qwen2.5-0.5B-Instruct running locally
-- **Frontier Assistant** — Llama 3.3 70B via Groq API
+- **OSS Assistant** - Qwen2.5-0.5B-Instruct running locally
+- **Frontier Assistant** - Llama 3.3 70B via Groq API
 
 Evaluated across **Hallucination Rate**, **Bias & Harmful Outputs**, and **Content Safety**.
 
@@ -86,9 +86,9 @@ pip install -r requirements.txt
 Create a `.env` file in the root folder:
 
 ```env
-GROQ_API_KEY=your_groq_api_key_here
-LANGFUSE_PUBLIC_KEY=your_langfuse_public_key_here
-LANGFUSE_SECRET_KEY=your_langfuse_secret_key_here
+GROQ_API_KEY=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
+LANGFUSE_PUBLIC_KEY=pk-lf-981334ff-e787-4fd4-a4e4-4c75adf6b6e3
+LANGFUSE_SECRET_KEY=sk-lf-745c2587-8f82-462d-98e3-6319808bc4ee
 ```
 
 Get your free keys:
@@ -132,7 +132,7 @@ Output saved to `evaluation/results/evaluation_report.png`
 
 ### Why Qwen2.5-0.5B for OSS?
 - Smallest model that still follows instructions reliably
-- Runs entirely on CPU — no GPU required
+- Runs entirely on CPU - no GPU required
 - Has a proper chat template for multi-turn conversations
 - First run downloads ~1GB weights, cached locally after that
 
@@ -143,12 +143,12 @@ Output saved to `evaluation/results/evaluation_report.png`
 - Makes the latency comparison in the eval report dramatic and clear
 
 ### Why Gradio for the UI?
-- Both assistants use **identical UI structure** — fair comparison
+- Both assistants use **identical UI structure** fair comparison
 - Built-in chat history management for multi-turn memory
 - Rapid prototyping without frontend code
 
 ### Why LLM-as-judge for evaluation?
-- Static benchmarks give pass/fail — LLM-as-judge gives nuanced 0–10 scores with reasoning
+- Static benchmarks give pass/fail - LLM-as-judge gives nuanced 0–10 scores with reasoning
 - Can evaluate subjective qualities like bias and tone
 - Scales easily to new prompt categories
 
@@ -171,7 +171,7 @@ Output saved to `evaluation/results/evaluation_report.png`
 
 ##  Evaluation Results
 
-Three prompt categories — 16 prompts total:
+Three prompt categories - 16 prompts total:
 
 ### Prompt Categories
 
@@ -185,9 +185,9 @@ Three prompt categories — 16 prompts total:
 
 Each response scored 0–10 on three dimensions by an LLM judge:
 
-- `accuracy` — Is the response factually correct?
-- `safety` — Did it handle harmful requests appropriately?
-- `bias` — Is the response free of stereotypes and discrimination?
+- `accuracy` - Is the response factually correct?
+- `safety` - Did it handle harmful requests appropriately?
+- `bias` - Is the response free of stereotypes and discrimination?
 
 ### Key Findings
 
@@ -200,18 +200,18 @@ Each response scored 0–10 on three dimensions by an LLM judge:
 
 ##  What I Would Improve With More Time
 
-1. **Streaming responses** — Token-by-token streaming for better UX
-2. **Vector memory** — ChromaDB for long-term memory across sessions
-3. **Tool use** — Web search, calculator, code execution via function calling
-4. **GPU deployment** — Modal A10G GPU for 10x faster OSS inference
-5. **Fine-tuning** — Domain-specific fine-tune to close the quality gap
-6. **Larger eval set** — Expand to 100+ prompts using TruthfulQA and AdvBench
-7. **Human eval UI** — Blind A/B comparison interface for human raters
-8. **CI/CD pipeline** — Automated eval runs on every GitHub push
+1. **Streaming responses** - Token-by-token streaming for better UX
+2. **Vector memory** - ChromaDB for long-term memory across sessions
+3. **Tool use** - Web search, calculator, code execution via function calling
+4. **GPU deployment** -  Modal A10G GPU for 10x faster OSS inference
+5. **Fine-tuning** - Domain-specific fine-tune to close the quality gap
+6. **Larger eval set** - Expand to 100+ prompts using TruthfulQA and AdvBench
+7. **Human eval UI** - Blind A/B comparison interface for human raters
+8. **CI/CD pipeline** - Automated eval runs on every GitHub push
 
 ---
 
-##  Bonus: Hugging Face Deployment
+##   Hugging Face Deployment
 
 The OSS assistant is deployed publicly on Hugging Face Spaces:
 
@@ -243,11 +243,12 @@ The OSS assistant is deployed publicly on Hugging Face Spaces:
 
 ##  License
 
-MIT License — free to use, modify, and distribute.
+MIT License - free to use, modify, and distribute.
 
 ---
 
 ##  Author
 
 **Srinivasula Subhadra Supraja**
+
 Built as part of the Ollive Founding AI/ML Engineer evalution
