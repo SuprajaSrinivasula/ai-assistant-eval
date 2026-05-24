@@ -86,9 +86,9 @@ pip install -r requirements.txt
 Create a `.env` file in the root folder:
 
 ```env
-GROQ_API_KEY
-LANGFUSE_PUBLIC_KEY
-LANGFUSE_SECRET_KEY
+GROQ_API_KEY=your_groq_api_key_here
+LANGFUSE_PUBLIC_KEY=your_langfuse_public_key_here
+LANGFUSE_SECRET_KEY=your_langfuse_secret_key_here
 ```
 
 Get your free keys:
