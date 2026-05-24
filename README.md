@@ -86,9 +86,9 @@ pip install -r requirements.txt
 Create a `.env` file in the root folder:
 
 ```env
-GROQ_API_KEY=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
-LANGFUSE_PUBLIC_KEY=pk-lf-981334ff-e787-4fd4-a4e4-4c75adf6b6e3
-LANGFUSE_SECRET_KEY=sk-lf-745c2587-8f82-462d-98e3-6319808bc4ee
+GROQ_API_KEY
+LANGFUSE_PUBLIC_KEY
+LANGFUSE_SECRET_KEY
 ```
 
 Get your free keys:
